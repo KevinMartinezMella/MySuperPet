@@ -1,0 +1,53 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-dark fondo fixed-top">
+    <a class="navbar-brand" href="{% url 'inicio' %}">
+        <img class="logo" src="{% static 'img/LogoMySuperPet.png' %}" alt="NavBarLogo">
+        My Super Pet
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ml-auto text-center">
+        <a class="nav-item nav-link">
+            <a href="{% url 'acceder' %}" class="btn btn-light btn-block">Iniciar Sesión</a>
+        </a>
+        <a class="nav-item nav-link">
+            <a href="{% url 'registro' %}" class="btn btn-light btn-block">Registrarse</a>
+        </a>
+      </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="back">
+        <div class="form">
+            <div class="encabezado text-center mb-4">
+                <img class="logo-form" src="{% static 'img/LogoMySuperPet.png' %}" alt="NavBarLogo">
+                <h5 class="mt-4">Iniciar Sesión</h5>
+            </div>
+            <form action="{% url 'acceder' %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>Nombre de Usuario</label>
+                    <input autofocus type="text" name="nombreUsuario" class="form-control" placeholder="Escribe tu nombre de usuario">
+                </div>
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" name="contrasena" class="form-control" placeholder="Escribe tu contraseña">
+                </div>
+                <div class="text-center">
+                    ¿Olvidaste tu Contraseña?<a class="rosa" href="#"> Click aquí</a>
+                </div>
+                <div class="form-group pt-4">
+                    <button type="submit" class="btn btn-block btn-fondo text-light">Acceder</button>
+                </div>
+                <hr/>
+                <div class="text-center">¿No tienes cuenta aún?<a class="rosa" href="{% url 'registro' %}"> Registrate</a></div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
