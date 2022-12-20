@@ -7,8 +7,8 @@ class Usuario(models.Model):
     nombreUsuario = models.CharField(max_length=15)
     contrasena = models.CharField(max_length=80)
     fechaCreacion = models.DateTimeField(auto_now_add=True)
-    def __str__(self):
-        return self.nombreUsuario
+    def ___list___ (self):
+        return self.id, self.nombreUsuario
 
 class TipoMascota(models.Model):
     nombreTipo = models.CharField(max_length=50)

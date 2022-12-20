@@ -28,21 +28,21 @@
                 <img class="logo-form" src="{% static 'img/LogoMySuperPet.png' %}" alt="NavBarLogo">
                 <h5 class="mt-4">Iniciar Sesión</h5>
             </div>
-            <form action="{% url 'acceder' %}" method="POST">
+            <form id="formAcceder" action="{% url 'acceder' %}" method="POST">
                 {% csrf_token %}
                 <div class="form-group">
                     <label>Nombre de Usuario</label>
-                    <input autofocus type="text" name="nombreUsuario" class="form-control" placeholder="Escribe tu nombre de usuario">
+                    <input id="nombreUsuario" autofocus type="text" name="nombreUsuario" class="form-control" placeholder="Escribe tu nombre de usuario">
                 </div>
                 <div class="form-group">
                     <label>Contraseña</label>
-                    <input type="password" name="contrasena" class="form-control" placeholder="Escribe tu contraseña">
+                    <input id="contrasena" type="password" name="contrasena" class="form-control" placeholder="Escribe tu contraseña">
                 </div>
                 <div class="text-center">
                     ¿Olvidaste tu Contraseña?<a class="rosa" href="#"> Click aquí</a>
                 </div>
                 <div class="form-group pt-4">
-                    <button type="submit" class="btn btn-block btn-fondo text-light">Acceder</button>
+                    <button id="btnAcceder" type="button" class="btn btn-block btn-fondo text-light">Acceder</button>
                 </div>
                 <hr/>
                 <div class="text-center">¿No tienes cuenta aún?<a class="rosa" href="{% url 'registro' %}"> Registrate</a></div>
