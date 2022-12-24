@@ -25,7 +25,7 @@ def registro(request):
     if request.method == 'GET':
         return render(request, 'registro.html')
     elif request.method == 'POST':
-        usuario = request.POST.get('nombreUsuario')
+        usuario = request.POST.get('nombreUsuario').lower()
         email = request.POST.get('email')
         contrasena = request.POST.get('contrasena')
         confirmContrasena = request.POST.get('confirmContrasena')

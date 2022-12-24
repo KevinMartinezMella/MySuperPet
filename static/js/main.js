@@ -1,4 +1,3 @@
-const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 var toastMixin = Swal.mixin({
     toast: true,
     icon: 'success',
@@ -28,6 +27,7 @@ $(document).ready(function(){
 });
 
 function validarCampos(){
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     var campousuario = $('#nombreUsuario');
     var campocontrasena = $('#contrasena');
     if(campousuario.val() == '' && campocontrasena.val() == '') {
@@ -80,6 +80,7 @@ function validarCampos(){
 
 
 function validarRegistro(){
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     var campousuario = $('#nombreUsuario_r');
     var campoemail = $('#email_r');
     var campocontrasena = $('#contrasena_r');
@@ -104,10 +105,60 @@ function validarRegistro(){
             title: 'Debes llenar los campos',
             icon: 'error'
         });
+    } else if(campousuario.val() != '' && campoemail.val() != '' && campocontrasena.val() == '' && campoconfirm.val() == '') {
+        campousuario.css('border','1px solid green');
+        campoemail.css('border','1px solid green');
+        campoconfirm.css('border','1px solid red');
+        campocontrasena.css('border','1px solid red');
+        toastMixin.fire({
+            animation: true,
+            title: 'Debes llenar los campos',
+            icon: 'error'
+        });
+    } else if(campousuario.val() != '' && campoemail.val() == '' && campocontrasena.val() != '' && campoconfirm.val() == '') {
+        campousuario.css('border','1px solid green');
+        campoemail.css('border','1px solid red');
+        campoconfirm.css('border','1px solid red');
+        campocontrasena.css('border','1px solid green');
+        toastMixin.fire({
+            animation: true,
+            title: 'Debes llenar los campos',
+            icon: 'error'
+        });
+    } else if(campousuario.val() != '' && campoemail.val() == '' && campocontrasena.val() == '' && campoconfirm.val() != '') {
+        campousuario.css('border','1px solid green');
+        campoemail.css('border','1px solid red');
+        campoconfirm.css('border','1px solid green');
+        campocontrasena.css('border','1px solid red');
+        toastMixin.fire({
+            animation: true,
+            title: 'Debes llenar los campos',
+            icon: 'error'
+        });
     } else if(campousuario.val() == '' && campoemail.val() != '' && campocontrasena.val() == '' && campoconfirm.val() == '') {
         campousuario.css('border','1px solid red');
         campoemail.css('border','1px solid green');
         campoconfirm.css('border','1px solid red');
+        campocontrasena.css('border','1px solid red');
+        toastMixin.fire({
+            animation: true,
+            title: 'Debes llenar los campos',
+            icon: 'error'
+        });
+    } else if(campousuario.val() == '' && campoemail.val() != '' && campocontrasena.val() != '' && campoconfirm.val() == '') {
+        campousuario.css('border','1px solid red');
+        campoemail.css('border','1px solid green');
+        campoconfirm.css('border','1px solid red');
+        campocontrasena.css('border','1px solid green');
+        toastMixin.fire({
+            animation: true,
+            title: 'Debes llenar los campos',
+            icon: 'error'
+        });
+    } else if(campousuario.val() == '' && campoemail.val() != '' && campocontrasena.val() == '' && campoconfirm.val() != '') {
+        campousuario.css('border','1px solid red');
+        campoemail.css('border','1px solid green');
+        campoconfirm.css('border','1px solid green');
         campocontrasena.css('border','1px solid red');
         toastMixin.fire({
             animation: true,
@@ -158,7 +209,7 @@ function validarRegistro(){
                         campocontrasena.css('border','1px solid red');
                         toastMixin.fire({
                             animation: true,
-                            title: 'Las contraseñas no coinciden',
+                            title: 'Este usuario ya existe, prueba con otro',
                             icon: 'error'
                         });
                     } else if(data == 2) {
