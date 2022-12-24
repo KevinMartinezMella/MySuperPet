@@ -17,9 +17,9 @@ def acceder(request):
             usuario_actual = ingreso[0]
             request.session['nombreUsuario'] = usuario_actual.nombreUsuario
             request.session['idUsuario'] = usuario_actual.id
-            return redirect('menu')
+            return HttpResponse(1)
         else:
-            return 0
+            return HttpResponse(0)
 
 def registro(request):
     if request.method == 'GET':
@@ -29,6 +29,9 @@ def registro(request):
         email = request.POST.get('email')
         contrasena = request.POST.get('contrasena')
         confirmContrasena = request.POST.get('confirmContrasena')
+        buscarUsuario = Usuario.objects.filter(nombreUsuario = usuario)
+        if len(buscarUsuario) != 0:
+            return HttpResponse(1)
         if contrasena == confirmContrasena:
             registro = Usuario(
                 nombreUsuario = usuario,
@@ -36,8 +39,10 @@ def registro(request):
                 contrasena = contrasena
             )
             registro.save()
+            return HttpResponse(2)
             return redirect('acceder')
         else:
+            return HttpResponse(0)
             return redirect('registro')
 
 def menu(request):
